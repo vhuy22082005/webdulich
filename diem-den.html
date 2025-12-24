@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách điểm đến | TravelCompany</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .destination-toggle {
+            display: flex;
+            gap: 16px;
+            margin: 32px 0 24px 0;
+            justify-content: center;
+        }
+        .destination-radio {
+            display: none;
+        }
+        .destination-btn {
+            padding: 10px 32px;
+            border: none;
+            border-radius: 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-domestic {
+            background: #00FF7F;
+            color: #222;
+        }
+        .btn-international {
+            background: #66CDAA;
+            color: #222;
+        }
+        .destination-radio:checked + .btn-domestic {
+            background: #00cc66;
+        }
+        .destination-radio:checked + .btn-international {
+            background: #4da882;
+        }
+        .destination-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .destination-wrapper {
+            position: relative;
+        }
+        .destination-list-container {
+            position: relative;
+        }
+        #domestic-list {
+            display: flex;
+        }
+        #international-list {
+            display: none;
+        }
+        #toggle-international:checked ~ .destination-list-container #domestic-list {
+            display: none !important;
+        }
+        #toggle-international:checked ~ .destination-list-container #international-list {
+            display: flex !important;
+        }
+        #toggle-domestic:checked ~ .destination-list-container #domestic-list {
+            display: flex !important;
+        }
+        #toggle-domestic:checked ~ .destination-list-container #international-list {
+            display: none !important;
+        }
+        .destination-item {
+            flex: 0 0 200px;
+            background: #fff;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+        }
+        .destination-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .destination-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #f2f2f2;
+        }
+        .destination-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .destination-price {
+            color: #00b894;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .destination-original-price {
+            color: #888;
+            text-decoration: line-through;
+            font-size: 0.98em;
+            margin-top: 2px;
+        }
+        .destination-list > a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .destination-list > a .destination-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header id="header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=120&q=80" alt="TravelCompany Logo">
+                    <a href="index.html" class="logo-text">TravelCompany</a>
+                </div>
+                <nav class="header-navbar">
+                    <ul class="header-navbar-list">
+                        <li class="header-navbar-item"><a class="menu" href="index.html">TRANG CHỦ</a></li>
+                        <li class="header-navbar-item"><a class="menu" href="#contact">LIÊN HỆ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <h2 style="text-align:center;margin-top:32px;">TẤT CẢ ĐIỂM ĐẾN</h2>
+                <div class="destination-wrapper">
+                <input type="radio" name="destination-type" id="toggle-domestic" class="destination-radio" checked>
+                <input type="radio" name="destination-type" id="toggle-international" class="destination-radio">
+                <div class="destination-toggle">
+                    <label for="toggle-domestic" class="destination-btn btn-domestic">Trong nước</label>
+                    <label for="toggle-international" class="destination-btn btn-international">Nước ngoài</label>
+                </div>
+                <div class="destination-list-container">
+                <div id="domestic-list" class="destination-list">
+                    <a href="tour-danang.html">
+                        <div class="destination-item">
+                            <img class="destination-img" src="assets/img/danang.jpg" alt="Đà Nẵng">
+                            <div class="destination-name">Đà Nẵng</div>
+                            <div class="destination-price">4.340.000đ</div>
+                            <div class="destination-original-price">6.200.000đ</div>
+                        </div>
+                    </a>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/dalatchill.jpg" alt="Đà Lạt">
+                        <div class="destination-name">Đà Lạt</div>
+                        <div class="destination-price">4.340.000đ</div>
+                        <div class="destination-original-price">6.200.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/biennhatrang.webp" alt="Nha Trang">
+                        <div class="destination-name">Nha Trang</div>
+                        <div class="destination-price">5.740.000đ</div>
+                        <div class="destination-original-price">8.200.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/hoian.webp" alt="Hội An">
+                        <div class="destination-name">Hội An</div>
+                        <div class="destination-price">4.340.000đ</div>
+                        <div class="destination-original-price">6.200.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/hochiminh.jpg" alt="TP Hồ Chí Minh">
+                        <div class="destination-name">TP Hồ Chí Minh</div>
+                        <div class="destination-price">4.340.000đ</div>
+                        <div class="destination-original-price">6.200.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/halong.jpg" alt="Hạ Long">
+                        <div class="destination-name">Hạ Long</div>
+                        <div class="destination-price">4.340.000đ</div>
+                        <div class="destination-original-price">6.200.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/phuquoc.jpg" alt="Phú Quốc">
+                        <div class="destination-name">Phú Quốc</div>
+                        <div class="destination-price">5.250.000đ</div>
+                        <div class="destination-original-price">7.500.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/quangbinh.jpg" alt="Quảng Bình">
+                        <div class="destination-name">Quảng Bình</div>
+                        <div class="destination-price">4.760.000đ</div>
+                        <div class="destination-original-price">6.800.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/hue" alt="Huế">
+                        <div class="destination-name">Huế</div>
+                        <div class="destination-price">3.640.000đ</div>
+                        <div class="destination-original-price">5.200.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/sapa" alt="SaPa">
+                        <div class="destination-name">SaPa</div>
+                        <div class="destination-price">5.530.000đ</div>
+                        <div class="destination-original-price">7.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/lyson.jpg" alt="Quảng Ngãi">
+                        <div class="destination-name">Quảng Ngãi<br>Đảo Lý Sơn</div>
+                        <div class="destination-price">3.640.000đ</div>
+                        <div class="destination-original-price">5.200.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/cantho.jpg" alt="Cần Thơ">
+                        <div class="destination-name">Cần Thơ</div>
+                        <div class="destination-price">2.590.000đ</div>
+                        <div class="destination-original-price">3.700.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/taybac.jpg" alt="Tây Bắc">
+                        <div class="destination-name">Tây Bắc</div>
+                        <div class="destination-price">5.950.000đ</div>
+                        <div class="destination-original-price">8.500.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/ninhbinh.webp" alt="Ninh Bình">
+                        <div class="destination-name">Ninh Bình</div>
+                        <div class="destination-price">3.360.000đ</div>
+                        <div class="destination-original-price">4.800.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/pleiku.jpg" alt="Pleiku">
+                        <div class="destination-name">Pleiku</div>
+                        <div class="destination-price">3.920.000đ</div>
+                        <div class="destination-original-price">5.600.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/kycoeogio.webp" alt="Quy Nhơn">
+                        <div class="destination-name">Quy Nhơn</div>
+                        <div class="destination-price">5.040.000đ</div>
+                        <div class="destination-original-price">7.200.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/vungtau" alt="Vũng Tàu">
+                        <div class="destination-name">Vũng Tàu</div>
+                        <div class="destination-price">2.520.000đ</div>
+                        <div class="destination-original-price">3.600.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/taynguyen.jpeg" alt="Tây Nguyên">
+                        <div class="destination-name">Tây Nguyên</div>
+                        <div class="destination-price">4.130.000đ</div>
+                        <div class="destination-original-price">5.900.000đ</div>
+                    </div>
+                </div>
+                <div id="international-list" class="destination-list">
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/tokyo" alt="Nhật Bản">
+                        <div class="destination-name">Nhật Bản</div>
+                        <div class="destination-price">29.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/seoul.jpg" alt="Hàn Quốc">
+                        <div class="destination-name">Hàn Quốc</div>
+                        <div class="destination-price">18.500.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/singapore.jpg" alt="Singapore">
+                        <div class="destination-name">Singapore</div>
+                        <div class="destination-price">12.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/thailan.webp" alt="Thái Lan">
+                        <div class="destination-name">Thái Lan</div>
+                        <div class="destination-price">9.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/pari.webp" alt="Pháp">
+                        <div class="destination-name">Pháp</div>
+                        <div class="destination-price">39.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/italia.jpg" alt="Ý">
+                        <div class="destination-name">Ý</div>
+                        <div class="destination-price">37.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/usa.jpg" alt="Mỹ">
+                        <div class="destination-name">Mỹ</div>
+                        <div class="destination-price">49.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/malaysia.jpg" alt="Malaysia">
+                        <div class="destination-name">Malaysia</div>
+                        <div class="destination-price">11.500.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/backinh.jpg" alt="Trung Quốc">
+                        <div class="destination-name">Trung Quốc</div>
+                        <div class="destination-price">25.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/england.jpg" alt="Anh">
+                        <div class="destination-name">Anh</div>
+                        <div class="destination-price">41.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/germany.webp" alt="Đức">
+                        <div class="destination-name">Đức</div>
+                        <div class="destination-price">44.500.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/canada.jpeg" alt="Canada">
+                        <div class="destination-name">Canada</div>
+                        <div class="destination-price">52.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/uc.jpg" alt="Úc">
+                        <div class="destination-name">Úc</div>
+                        <div class="destination-price">47.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/newzealand.gif" alt="New Zealand">
+                        <div class="destination-name">New Zealand</div>
+                        <div class="destination-price">54.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/namphi.jpg" alt="Nam Phi">
+                        <div class="destination-name">Nam Phi</div>
+                        <div class="destination-price">58.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/bali.jpg" alt="Ba Li">
+                        <div class="destination-name">Ba Li</div>
+                        <div class="destination-price">16.500.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/dailoan.jpg" alt="Đài Loan">
+                        <div class="destination-name">Đài Loan</div>
+                        <div class="destination-price">19.900.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/bi.webp" alt="Bỉ">
+                        <div class="destination-name">Bỉ</div>
+                        <div class="destination-price">45.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/sec.jpg" alt="Cộng hòa Séc">
+                        <div class="destination-name">Cộng hòa Séc</div>
+                        <div class="destination-price">46.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/hungary.avif" alt="Hungary">
+                        <div class="destination-name">Hungary</div>
+                        <div class="destination-price">44.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/ao.jpg" alt="Áo">
+                        <div class="destination-name">Áo</div>
+                        <div class="destination-price">45.500.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/hylap.jpg" alt="Hy Lạp">
+                        <div class="destination-name">Hy Lạp</div>
+                        <div class="destination-price">51.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/turkey.jpg" alt="Thổ Nhĩ Kỳ">
+                        <div class="destination-name">Thổ Nhĩ Kỳ</div>
+                        <div class="destination-price">50.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/nauy.jpg" alt="Na Uy">
+                        <div class="destination-name">Na Uy</div>
+                        <div class="destination-price">55.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/phanlan.jpg" alt="Phần Lan">
+                        <div class="destination-name">Phần Lan</div>
+                        <div class="destination-price">53.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/thuydien.jpg" alt="Thụy Điển">
+                        <div class="destination-name">Thụy Điển</div>
+                        <div class="destination-price">52.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/liberia.jpg" alt="Bồ Đào Nha">
+                        <div class="destination-name">Bồ Đào Nha</div>
+                        <div class="destination-price">47.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/madrid.jpg" alt="Tây Ban Nha">
+                        <div class="destination-name">Tây Ban Nha</div>
+                        <div class="destination-price">42.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/thuysi.jpg" alt="Thụy Sĩ">
+                        <div class="destination-name">Thụy Sĩ</div>
+                        <div class="destination-price">48.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/holland.jpg" alt="Hà Lan">
+                        <div class="destination-name">Hà Lan</div>
+                        <div class="destination-price">43.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/danmach.jpg" alt="Đan Mạch">
+                        <div class="destination-name">Đan Mạch</div>
+                        <div class="destination-price">51.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/iceland.jpg" alt="Iceland">
+                        <div class="destination-name">Iceland</div>
+                        <div class="destination-price">60.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/nepal.jpg" alt="Nepal">
+                        <div class="destination-name">Nepal</div>
+                        <div class="destination-price">32.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/bruhtan.jpg" alt="Bhutan">
+                        <div class="destination-name">Bhutan</div>
+                        <div class="destination-price">39.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/india.jpg" alt="Ấn Độ">
+                        <div class="destination-name">Ấn Độ</div>
+                        <div class="destination-price">28.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/maldives.jpg" alt="Maldives">
+                        <div class="destination-name">Maldives</div>
+                        <div class="destination-price">35.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/arap.jpg" alt="Ả rập Xê Út">
+                        <div class="destination-name">Ả rập Xê Út</div>
+                        <div class="destination-price">45.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/dubai.jpg" alt="Dubai">
+                        <div class="destination-name">Dubai</div>
+                        <div class="destination-price">38.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/monaco.jpg" alt="Monaco">
+                        <div class="destination-name">Monaco</div>
+                        <div class="destination-price">55.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/israel.jpg" alt="Israel">
+                        <div class="destination-name">Israel</div>
+                        <div class="destination-price">49.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/qatar.jpg" alt="Qatar">
+                        <div class="destination-name">Qatar</div>
+                        <div class="destination-price">41.000.000đ</div>
+                    </div>
+                    <div class="destination-item">
+                        <img class="destination-img" src="assets/img/brazil.jpg" alt="Brazil">
+                        <div class="destination-name">Brazil</div>
+                        <div class="destination-price">70.000.000đ</div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>VỀ CHÚNG TÔI</h4>
+                        <ul>
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="#">Travel Blog</a></li>
+                            <li><a href="#">Câu hỏi thường gặp</a></li>
+                            <li><a href="#">Phương thức thanh toán</a></li>
+                            <li><a href="#">Du lịch bền vững</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>DỊCH VỤ</h4>
+                        <ul>
+                            <li><a href="#">Tour trong nước</a></li>
+                            <li><a href="#">Tour nước ngoài</a></li>
+                            <li><a href="#">Đặt vé máy bay</a></li>
+                            <li><a href="#">Đặt khách sạn</a></li>
+                            <li><a href="#">Thuê xe du lịch</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>CHÍNH SÁCH & QUY ĐỊNH</h4>
+                        <ul>
+                            <li><a href="#">Quy định thanh toán</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Quy chế hoạt động</a></li>
+                            <li><a href="#">Chương trình khách hàng thân thiết</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>LIÊN HỆ</h4>
+                        <div class="contact-info">
+                            <p><i class="fas fa-phone"></i> 0123 456 789</p>
+                            <p><i class="fas fa-envelope"></i> info@travelcompany.com</p>
+                            <p><i class="fas fa-map-marker-alt"></i> 123 ABC, Quận 1, TP.HCM</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="payment-methods">
+                        <h4>PHƯƠNG THỨC THANH TOÁN</h4>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fab fa-cc-apple-pay"></i>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <p>&copy; 2025 TravelCompany. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 
